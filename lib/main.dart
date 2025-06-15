@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: (_) => ImagePickerProvider()),
         ],
-        child: MaterialApp(home: HomePage(), debugShowCheckedModeBanner: false),
+        child: MaterialApp(home: HomePage()),
       ),
     );
   }

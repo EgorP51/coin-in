@@ -19,18 +19,15 @@ class AppScaffold extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        if (Theme.of(context).brightness == Brightness.light)
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [kLightPeach, kWhite],
-              ),
+        Container(
+          decoration: const BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [kLightPeach, kWhite],
             ),
-          )
-        else
-          Container(),
+          ),
+        ),
         SafeArea(
           bottom: false,
           child: Scaffold(

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:coin_in/core/ui/style.dart';
 import 'package:flutter/material.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
@@ -19,12 +20,11 @@ class ImagePickerProvider extends ChangeNotifier {
       uiSettings: [
         AndroidUiSettings(
           toolbarTitle: 'Cropper',
-          toolbarColor: Colors.deepOrange,
-          toolbarWidgetColor: Colors.white,
+          toolbarColor: kAmber,
+          toolbarWidgetColor: kWhite,
           aspectRatioPresets: [
             CropAspectRatioPreset.original,
             CropAspectRatioPreset.square,
-            CropAspectRatioPresetCustom(),
           ],
         ),
         IOSUiSettings(
@@ -32,10 +32,8 @@ class ImagePickerProvider extends ChangeNotifier {
           aspectRatioPresets: [
             CropAspectRatioPreset.original,
             CropAspectRatioPreset.square,
-            CropAspectRatioPresetCustom(),
           ],
         ),
-        WebUiSettings(context: context),
       ],
     );
 
@@ -49,12 +47,4 @@ class ImagePickerProvider extends ChangeNotifier {
     _selectedImage = null;
     notifyListeners();
   }
-}
-
-class CropAspectRatioPresetCustom implements CropAspectRatioPresetData {
-  @override
-  (int, int)? get data => (2, 3);
-
-  @override
-  String get name => '2x3 (customized)';
 }

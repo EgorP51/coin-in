@@ -2,6 +2,9 @@ import 'package:coin_in/core/ui/style.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
+
+import '../../../features/home/manager/image_picker_provider.dart';
 
 class CustomNavBar extends StatefulWidget {
   const CustomNavBar({super.key});
@@ -32,9 +35,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
                     offset: const Offset(0, -0.1),
                   ),
                 ],
-                color: Theme.of(context).brightness == Brightness.light
-                    ? kWhite
-                    : kDarkBlueGrey,
+                color: kWhite,
                 borderRadius: BorderRadiusGeometry.only(
                   topLeft: Radius.circular(24.r),
                   topRight: Radius.circular(24.r),
@@ -105,7 +106,9 @@ class _CustomNavBarState extends State<CustomNavBar> {
             ),
           ),
           GestureDetector(
-            onTap: () {},
+            onTap: () {
+              context.read<ImagePickerProvider>().pickImageAndCrop(context);
+            },
             child: SizedBox(
               child: SvgPicture.asset(
                 'assets/icons/big_camera_icon.svg',
@@ -135,11 +138,7 @@ class CustomNavBarItem extends StatelessWidget {
   final String? label;
   final bool isSelected;
 
-  _color(BuildContext context, bool isSelected) {
-    return Theme.of(context).brightness == Brightness.light
-        ? (isSelected ? kAmber : kSteelBlue)
-        : (isSelected ? kAmber : kGrey);
-  }
+  get _color => isSelected ? kAmber : kSteelBlue;
 
   @override
   Widget build(BuildContext context) {
@@ -152,10 +151,7 @@ class CustomNavBarItem extends StatelessWidget {
           iconPath ?? '',
           width: 24.w,
           height: 24.h,
-          colorFilter: ColorFilter.mode(
-            _color(context, isSelected),
-            BlendMode.srcIn,
-          ),
+          colorFilter: ColorFilter.mode(_color, BlendMode.srcIn),
           fit: BoxFit.scaleDown,
           alignment: Alignment.center,
           errorBuilder: (_, __, ___) => const SizedBox.shrink(),
@@ -165,7 +161,7 @@ class CustomNavBarItem extends StatelessWidget {
           label ?? '',
           style: TextStyle(
             fontSize: 12.sp,
-            color: _color(context, isSelected),
+            color: _color,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w500,
           ),
