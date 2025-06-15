@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 
+import 'features/home/manager/image_picker_provider.dart';
 import 'features/home/presentation/home_page.dart';
 
 void main() {
@@ -14,7 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenUtilInit(
       designSize: const Size(375, 812),
-      child: MaterialApp(home: HomePage()),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => ImagePickerProvider()),
+        ],
+        child: MaterialApp(home: HomePage(), debugShowCheckedModeBanner: false),
+      ),
     );
   }
 }
