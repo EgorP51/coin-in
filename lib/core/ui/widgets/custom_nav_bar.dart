@@ -104,7 +104,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
               ),
             ),
           ),
-          InkWell(
+          GestureDetector(
             onTap: () {},
             child: SizedBox(
               child: SvgPicture.asset(
