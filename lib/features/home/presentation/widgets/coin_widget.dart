@@ -68,6 +68,7 @@ class CoinWidget extends StatelessWidget {
                 ),
               ),
               Container(
+                width: 150.r,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(150.r),
                   boxShadow: [
